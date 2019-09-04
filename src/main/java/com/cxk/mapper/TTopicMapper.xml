@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cxk.mapper.TTopicMapper" >
+  <resultMap id="BaseResultMap" type="com.cxk.po.TTopic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="board_id" property="boardId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="topic_title" property="topicTitle" jdbcType="VARCHAR" />
+    <result column="topic_text" property="topicText" jdbcType="VARCHAR" />
+    <result column="topic_replies" property="topicReplies" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_post" property="lastPost" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, board_id, user_id, topic_title, topic_text, topic_replies, create_time, last_post
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cxk.po.TTopicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_topic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_topic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cxk.po.TTopicExample" >
+    delete from t_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cxk.po.TTopic" >
+    insert into t_topic (id, board_id, user_id, 
+      topic_title, topic_text, topic_replies, 
+      create_time, last_post)
+    values (#{id,jdbcType=INTEGER}, #{boardId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{topicTitle,jdbcType=VARCHAR}, #{topicText,jdbcType=VARCHAR}, #{topicReplies,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastPost,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cxk.po.TTopic" >
+    insert into t_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="boardId != null" >
+        board_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="topicTitle != null" >
+        topic_title,
+      </if>
+      <if test="topicText != null" >
+        topic_text,
+      </if>
+      <if test="topicReplies != null" >
+        topic_replies,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastPost != null" >
+        last_post,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="boardId != null" >
+        #{boardId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topicTitle != null" >
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicText != null" >
+        #{topicText,jdbcType=VARCHAR},
+      </if>
+      <if test="topicReplies != null" >
+        #{topicReplies,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastPost != null" >
+        #{lastPost,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cxk.po.TTopicExample" resultType="java.lang.Integer" >
+    select count(*) from t_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_topic
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.boardId != null" >
+        board_id = #{record.boardId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.topicTitle != null" >
+        topic_title = #{record.topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topicText != null" >
+        topic_text = #{record.topicText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topicReplies != null" >
+        topic_replies = #{record.topicReplies,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastPost != null" >
+        last_post = #{record.lastPost,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_topic
+    set id = #{record.id,jdbcType=INTEGER},
+      board_id = #{record.boardId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      topic_title = #{record.topicTitle,jdbcType=VARCHAR},
+      topic_text = #{record.topicText,jdbcType=VARCHAR},
+      topic_replies = #{record.topicReplies,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_post = #{record.lastPost,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cxk.po.TTopic" >
+    update t_topic
+    <set >
+      <if test="boardId != null" >
+        board_id = #{boardId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topicTitle != null" >
+        topic_title = #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicText != null" >
+        topic_text = #{topicText,jdbcType=VARCHAR},
+      </if>
+      <if test="topicReplies != null" >
+        topic_replies = #{topicReplies,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastPost != null" >
+        last_post = #{lastPost,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cxk.po.TTopic" >
+    update t_topic
+    set board_id = #{boardId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      topic_title = #{topicTitle,jdbcType=VARCHAR},
+      topic_text = #{topicText,jdbcType=VARCHAR},
+      topic_replies = #{topicReplies,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_post = #{lastPost,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

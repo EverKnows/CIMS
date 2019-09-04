@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>精华帖</title>
+    <script src="../JS/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../JS/bootstrap.min.js"></script>
+    <script src="../JS/icheck.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="../CSS/font-awesome.css" rel="stylesheet">
+    <link href="../CSS/skins/all.css" rel="stylesheet">
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../CSS/buttons.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-default" >
+    <div class="container-fluid" >
+        <!-- 页眉 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Togglenavigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="padding:2px"><img src="../IMG/logo.png" width="200px" height="100%" /></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!--<ul class="nav navbar-nav">-->
+            <!--<li><a href="#">奖项<span class="sr-only">(current)</span></a></li>-->
+            <!--<li><a href="#">成员介绍</a></li>-->
+            <!--<li><a href="#">历史介绍</a></li>-->
+            <!--&lt;!&ndash;<li><a href="#">Link</a></li>&ndash;&gt;-->
+            <!--<li class="dropdown">-->
+            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">部门介绍<span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">管理部门</a></li>-->
+            <!--<li><a href="#">技术部门</a></li>-->
+            <!--<li><a href="#">后勤部门</a></li>-->
+            <!--<li><a href="#">财务部门</a></li>-->
+            <!--</ul>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+                <!--<c:if test="${not empty sessionScope.username}">-->
+                <!--<li><a href="#">-->
+                <!--${sessionScope.username}-->
+                <!--</a></li>-->
+                <!--</c:if>-->
+                <!--<c:if test="${empty sessionScope.username}">-->
+                <!--<li><a href="<%=basePath%>jsp/login.jsp">-->
+                <!--登录-->
+                <!--</a></li>-->
+                <!--</c:if>-->
+                <li><a href="#">登录</a></li>
+                <li><a href="#">注册</a></li>
+                <!--<li class="dropdown">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户中心<span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--<c:if test="${not empty sessionScope.username}">-->
+                <!--<li><a href="#">注销</a></li>-->
+                <!--<li><a href="#">个人中心</a></li>-->
+                <!--<li><a href="<%=basePath%>managerServlet">成员管理</a></li>-->
+                <!--</c:if>-->
+                <!--<c:if test="${empty sessionScope.username}">-->
+                <!--<li><a href="#">注册</a></li>-->
+                <!--<li><a href="#">登录</a></li>-->
+                <!--</c:if>-->
+
+                <!--<%&#45;&#45;<li><a href="#">注册</a></li>&#45;&#45;%>-->
+                <!--<%&#45;&#45;<li><a href="#">个人中心</a></li>&#45;&#45;%>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+    <div class="container" style="margin-top: 100px">
+        <div class="row" style="height: 50px;border: black solid 1px">
+            <div class="col-lg-10" style="padding: 10px;text-align: center;height: 50px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    <b style="font-size: 20px">cxk竞赛成绩管理系统</b>
+            </div>
+
+            <div class="col-lg-2" style="text-align: center;padding-right: 0px">
+                <button class="button button-rounded" style="height: 48px;width: 100%"><a href="#">查看更多</a></button>
+            </div>
+        </div>
+        <div class="row" style="text-align: center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cxk.mapper.TCompMapper" >
+  <resultMap id="BaseResultMap" type="com.cxk.po.TComp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="organizer" property="organizer" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="sign_up_start" property="signUpStart" jdbcType="TIMESTAMP" />
+    <result column="sign_up_end" property="signUpEnd" jdbcType="TIMESTAMP" />
+    <result column="comp_start" property="compStart" jdbcType="TIMESTAMP" />
+    <result column="comp_end" property="compEnd" jdbcType="TIMESTAMP" />
+    <result column="edu_limit" property="eduLimit" jdbcType="VARCHAR" />
+    <result column="introducation" property="introducation" jdbcType="VARCHAR" />
+    <result column="max_people" property="maxPeople" jdbcType="INTEGER" />
+    <result column="comp_attribute" property="compAttribute" jdbcType="VARCHAR" />
+    <result column="comp_pic" property="compPic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, comp_name, organizer, level, sign_up_start, sign_up_end, comp_start, comp_end, 
+    edu_limit, introducation, max_people, comp_attribute, comp_pic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cxk.po.TCompExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_comp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_comp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_comp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cxk.po.TCompExample" >
+    delete from t_comp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cxk.po.TComp" >
+    insert into t_comp (id, comp_name, organizer, 
+      level, sign_up_start, sign_up_end, 
+      comp_start, comp_end, edu_limit, 
+      introducation, max_people, comp_attribute, 
+      comp_pic)
+    values (#{id,jdbcType=INTEGER}, #{compName,jdbcType=VARCHAR}, #{organizer,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{signUpStart,jdbcType=TIMESTAMP}, #{signUpEnd,jdbcType=TIMESTAMP}, 
+      #{compStart,jdbcType=TIMESTAMP}, #{compEnd,jdbcType=TIMESTAMP}, #{eduLimit,jdbcType=VARCHAR}, 
+      #{introducation,jdbcType=VARCHAR}, #{maxPeople,jdbcType=INTEGER}, #{compAttribute,jdbcType=VARCHAR}, 
+      #{compPic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cxk.po.TComp" >
+    insert into t_comp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="compName != null" >
+        comp_name,
+      </if>
+      <if test="organizer != null" >
+        organizer,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="signUpStart != null" >
+        sign_up_start,
+      </if>
+      <if test="signUpEnd != null" >
+        sign_up_end,
+      </if>
+      <if test="compStart != null" >
+        comp_start,
+      </if>
+      <if test="compEnd != null" >
+        comp_end,
+      </if>
+      <if test="eduLimit != null" >
+        edu_limit,
+      </if>
+      <if test="introducation != null" >
+        introducation,
+      </if>
+      <if test="maxPeople != null" >
+        max_people,
+      </if>
+      <if test="compAttribute != null" >
+        comp_attribute,
+      </if>
+      <if test="compPic != null" >
+        comp_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="compName != null" >
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer != null" >
+        #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpStart != null" >
+        #{signUpStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signUpEnd != null" >
+        #{signUpEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compStart != null" >
+        #{compStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compEnd != null" >
+        #{compEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduLimit != null" >
+        #{eduLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="introducation != null" >
+        #{introducation,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPeople != null" >
+        #{maxPeople,jdbcType=INTEGER},
+      </if>
+      <if test="compAttribute != null" >
+        #{compAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="compPic != null" >
+        #{compPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cxk.po.TCompExample" resultType="java.lang.Integer" >
+    select count(*) from t_comp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_comp
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.compName != null" >
+        comp_name = #{record.compName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizer != null" >
+        organizer = #{record.organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signUpStart != null" >
+        sign_up_start = #{record.signUpStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signUpEnd != null" >
+        sign_up_end = #{record.signUpEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.compStart != null" >
+        comp_start = #{record.compStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.compEnd != null" >
+        comp_end = #{record.compEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.eduLimit != null" >
+        edu_limit = #{record.eduLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introducation != null" >
+        introducation = #{record.introducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxPeople != null" >
+        max_people = #{record.maxPeople,jdbcType=INTEGER},
+      </if>
+      <if test="record.compAttribute != null" >
+        comp_attribute = #{record.compAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compPic != null" >
+        comp_pic = #{record.compPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_comp
+    set id = #{record.id,jdbcType=INTEGER},
+      comp_name = #{record.compName,jdbcType=VARCHAR},
+      organizer = #{record.organizer,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR},
+      sign_up_start = #{record.signUpStart,jdbcType=TIMESTAMP},
+      sign_up_end = #{record.signUpEnd,jdbcType=TIMESTAMP},
+      comp_start = #{record.compStart,jdbcType=TIMESTAMP},
+      comp_end = #{record.compEnd,jdbcType=TIMESTAMP},
+      edu_limit = #{record.eduLimit,jdbcType=VARCHAR},
+      introducation = #{record.introducation,jdbcType=VARCHAR},
+      max_people = #{record.maxPeople,jdbcType=INTEGER},
+      comp_attribute = #{record.compAttribute,jdbcType=VARCHAR},
+      comp_pic = #{record.compPic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cxk.po.TComp" >
+    update t_comp
+    <set >
+      <if test="compName != null" >
+        comp_name = #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer != null" >
+        organizer = #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpStart != null" >
+        sign_up_start = #{signUpStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signUpEnd != null" >
+        sign_up_end = #{signUpEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compStart != null" >
+        comp_start = #{compStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compEnd != null" >
+        comp_end = #{compEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduLimit != null" >
+        edu_limit = #{eduLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="introducation != null" >
+        introducation = #{introducation,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPeople != null" >
+        max_people = #{maxPeople,jdbcType=INTEGER},
+      </if>
+      <if test="compAttribute != null" >
+        comp_attribute = #{compAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="compPic != null" >
+        comp_pic = #{compPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cxk.po.TComp" >
+    update t_comp
+    set comp_name = #{compName,jdbcType=VARCHAR},
+      organizer = #{organizer,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      sign_up_start = #{signUpStart,jdbcType=TIMESTAMP},
+      sign_up_end = #{signUpEnd,jdbcType=TIMESTAMP},
+      comp_start = #{compStart,jdbcType=TIMESTAMP},
+      comp_end = #{compEnd,jdbcType=TIMESTAMP},
+      edu_limit = #{eduLimit,jdbcType=VARCHAR},
+      introducation = #{introducation,jdbcType=VARCHAR},
+      max_people = #{maxPeople,jdbcType=INTEGER},
+      comp_attribute = #{compAttribute,jdbcType=VARCHAR},
+      comp_pic = #{compPic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
